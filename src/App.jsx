@@ -12,6 +12,7 @@ import MaritimeLeadership from "./pages/MaritimeLeadership";
 import KnowledgeHub from "./pages/KnowledgeHub";
 import MediaCentre from "./pages/MediaCentre";
 import UniversalSearch from "./pages/UniversalSearch";
+import IndiaMap from "./pages/IndiaMap";
 import AiAssistant from "./pages/AiAssistant";
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
           <Route path="/knowledge-hub" element={<KnowledgeHub />} />
           <Route path="/media-centre" element={<MediaCentre />} />
           <Route path="/search" element={<UniversalSearch />} />
+          <Route path="/india-map" element={<IndiaMap />} />
           <Route path="/ai-assistant" element={<AiAssistant />} />
         </Route>
       </Routes>

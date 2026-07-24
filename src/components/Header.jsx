@@ -48,7 +48,7 @@ const menuItems = [
   { label: "Knowledge Hub", path: "/knowledge-hub", hasDropdown: false },
   { label: "Media Centre", path: "/media-centre", hasDropdown: false },
   { label: "Stories", path: "/stories", hasDropdown: false },
-  { label: "India Map", path: "/", hasDropdown: false },
+  { label: "India Map", path: "/india-map", hasDropdown: false },
 ];
 
 const Header = () => {
