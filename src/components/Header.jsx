@@ -27,15 +27,15 @@ const menuItems = [
       { label: "Defense Shipbuilders", path: "/shipbuilding" },
     ],
   },
-  {
-    label: "Maritime Training Institute",
-    path: "/",
-    hasDropdown: true,
-    dropdown: [
-      { label: "Training Institutes Directory", path: "/" },
-      { label: "Approved Courses", path: "/" },
-    ],
-  },
+  // {
+  //   label: "Maritime Training Institute",
+  //   path: "/",
+  //   hasDropdown: false,
+  //   dropdown: [
+  //     { label: "Training Institutes Directory", path: "/Maritime Training Institute" },
+  //     { label: "Approved Courses", path: "/" },
+  //   ],
+  // },
   {
     label: "Maritime Leadership",
     path: "/maritime-leadership",
@@ -126,10 +126,9 @@ const Header = () => {
                 <NavLink
                   to={item.path}
                   className={() =>
-                    `flex items-center gap-1.5 transition-colors duration-200 whitespace-nowrap ${
-                      isActive(item.path)
-                        ? "text-[#D6AF36] font-semibold"
-                        : "text-gray-200 hover:text-[#D6AF36]"
+                    `flex items-center gap-1.5 transition-colors duration-200 whitespace-nowrap ${isActive(item.path)
+                      ? "text-[#D6AF36] font-semibold"
+                      : "text-gray-200 hover:text-[#D6AF36]"
                     }`
                   }
                 >
@@ -219,19 +218,17 @@ const Header = () => {
                       );
                   }}
                   className={() =>
-                    `flex items-center justify-between text-sm py-2.5 px-2 rounded-md transition-colors ${
-                      isActive(item.path)
-                        ? "text-[#D6AF36] bg-white/5 font-semibold"
-                        : "text-[#FFFFFFCC] hover:text-[#D6AF36] hover:bg-white/5"
+                    `flex items-center justify-between text-sm py-2.5 px-2 rounded-md transition-colors ${isActive(item.path)
+                      ? "text-[#D6AF36] bg-white/5 font-semibold"
+                      : "text-[#FFFFFFCC] hover:text-[#D6AF36] hover:bg-white/5"
                     }`
                   }
                 >
                   <span>{item.label}</span>
                   {item.hasDropdown && (
                     <FiChevronDown
-                      className={`w-4 h-4 text-gray-400 transition-transform ${
-                        openDropdown === index ? "rotate-180" : ""
-                      }`}
+                      className={`w-4 h-4 text-gray-400 transition-transform ${openDropdown === index ? "rotate-180" : ""
+                        }`}
                     />
                   )}
                 </NavLink>
