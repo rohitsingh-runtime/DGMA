@@ -14,10 +14,12 @@ import MediaCentre from "./pages/MediaCentre";
 import UniversalSearch from "./pages/UniversalSearch";
 import IndiaMap from "./pages/IndiaMap";
 import AiAssistant from "./pages/AiAssistant";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route element={<MainLayout />}>
           <Route
