@@ -2,41 +2,41 @@ import { useState, useRef, useEffect } from 'react';
 import Container from '../common/Container';
 import { Filter } from 'lucide-react';
 
-/* ─── LOCATION DATA ─── */
+/* ─── LOCATION DATA (Accurately aligned with SimpleMaps in.svg 1000x1000 viewBox) ─── */
 const locations = [
   // Major Ports
-  { id: 1, name: 'Deendayal Port (Kandla)', type: 'port', state: 'Gujarat', city: 'Kandla', x: 22, y: 42, desc: 'India\'s largest port by cargo throughput. Handles 132M tonnes annually.', stat: '132M tonnes', established: '1955' },
-  { id: 2, name: 'Mumbai Port Trust', type: 'port', state: 'Maharashtra', city: 'Mumbai', x: 28, y: 61, desc: 'One of India\'s oldest and busiest natural harbors.', stat: '65M tonnes', established: '1873' },
-  { id: 3, name: 'JNPT (Nhava Sheva)', type: 'port', state: 'Maharashtra', city: 'Navi Mumbai', x: 30, y: 62, desc: 'India\'s largest container port handling 5.1M TEUs.', stat: '5.1M TEUs', established: '1989' },
-  { id: 4, name: 'Mormugao Port', type: 'port', state: 'Goa', city: 'Vasco da Gama', x: 31, y: 67, desc: 'Major iron ore and coal handling port on west coast.', stat: '22M tonnes', established: '1885' },
-  { id: 5, name: 'New Mangalore Port', type: 'port', state: 'Karnataka', city: 'Mangalore', x: 36, y: 74, desc: 'Petroleum, LPG, and petrochemical hub.', stat: '45M tonnes', established: '1974' },
-  { id: 6, name: 'Cochin Port', type: 'port', state: 'Kerala', city: 'Kochi', x: 40, y: 82, desc: 'Natural harbor with modern container terminal.', stat: '32M tonnes', established: '1928' },
-  { id: 7, name: 'V.O. Chidambaranar Port', type: 'port', state: 'Tamil Nadu', city: 'Tuticorin', x: 46, y: 87, desc: 'Key southern port for coal and container cargo.', stat: '37M tonnes', established: '1974' },
-  { id: 8, name: 'Chennai Port', type: 'port', state: 'Tamil Nadu', city: 'Chennai', x: 53, y: 77, desc: 'India\'s second oldest major port. Major auto and container hub.', stat: '51M tonnes', established: '1881' },
-  { id: 9, name: 'Kamarajar Port', type: 'port', state: 'Tamil Nadu', city: 'Ennore', x: 54, y: 76, desc: 'India\'s first corporatized major port. Coal and LNG.', stat: '30M tonnes', established: '2001' },
-  { id: 10, name: 'Visakhapatnam Port', type: 'port', state: 'Andhra Pradesh', city: 'Visakhapatnam', x: 58, y: 63, desc: 'East coast\'s premier port for steel and petroleum.', stat: '72M tonnes', established: '1933' },
-  { id: 11, name: 'Paradip Port', type: 'port', state: 'Odisha', city: 'Paradip', x: 66, y: 54, desc: 'Largest east coast port by cargo volume.', stat: '130M tonnes', established: '1966' },
-  { id: 12, name: 'Kolkata/Haldia Port', type: 'port', state: 'West Bengal', city: 'Kolkata', x: 73, y: 48, desc: 'India\'s only riverine major port on the Hooghly.', stat: '46M tonnes', established: '1870' },
+  { id: 1, name: 'Deendayal Port (Kandla)', type: 'port', state: 'Gujarat', city: 'Kandla', x: 18.5, y: 40.0, desc: 'India\'s largest port by cargo throughput. Handles 132M tonnes annually.', stat: '132M tonnes', established: '1955' },
+  { id: 2, name: 'Mumbai Port Trust', type: 'port', state: 'Maharashtra', city: 'Mumbai', x: 23.2, y: 57.0, desc: 'One of India\'s oldest and busiest natural harbors.', stat: '65M tonnes', established: '1873' },
+  { id: 3, name: 'JNPT (Nhava Sheva)', type: 'port', state: 'Maharashtra', city: 'Navi Mumbai', x: 23.8, y: 58.2, desc: 'India\'s largest container port handling 5.1M TEUs.', stat: '5.1M TEUs', established: '1989' },
+  { id: 4, name: 'Mormugao Port', type: 'port', state: 'Goa', city: 'Vasco da Gama', x: 25.5, y: 68.0, desc: 'Major iron ore and coal handling port on west coast.', stat: '22M tonnes', established: '1885' },
+  { id: 5, name: 'New Mangalore Port', type: 'port', state: 'Karnataka', city: 'Mangalore', x: 27.5, y: 76.0, desc: 'Petroleum, LPG, and petrochemical hub.', stat: '45M tonnes', established: '1974' },
+  { id: 6, name: 'Cochin Port', type: 'port', state: 'Kerala', city: 'Kochi', x: 31.0, y: 84.5, desc: 'Natural harbor with modern container terminal.', stat: '32M tonnes', established: '1928' },
+  { id: 7, name: 'V.O. Chidambaranar Port', type: 'port', state: 'Tamil Nadu', city: 'Tuticorin', x: 37.5, y: 89.0, desc: 'Key southern port for coal and container cargo.', stat: '37M tonnes', established: '1974' },
+  { id: 8, name: 'Chennai Port', type: 'port', state: 'Tamil Nadu', city: 'Chennai', x: 44.0, y: 75.0, desc: 'India\'s second oldest major port. Major auto and container hub.', stat: '51M tonnes', established: '1881' },
+  { id: 9, name: 'Kamarajar Port', type: 'port', state: 'Tamil Nadu', city: 'Ennore', x: 44.5, y: 73.8, desc: 'India\'s first corporatized major port. Coal and LNG.', stat: '30M tonnes', established: '2001' },
+  { id: 10, name: 'Visakhapatnam Port', type: 'port', state: 'Andhra Pradesh', city: 'Visakhapatnam', x: 53.5, y: 61.5, desc: 'East coast\'s premier port for steel and petroleum.', stat: '72M tonnes', established: '1933' },
+  { id: 11, name: 'Paradip Port', type: 'port', state: 'Odisha', city: 'Paradip', x: 62.5, y: 51.5, desc: 'Largest east coast port by cargo volume.', stat: '130M tonnes', established: '1966' },
+  { id: 12, name: 'Kolkata/Haldia Port', type: 'port', state: 'West Bengal', city: 'Kolkata', x: 68.5, y: 46.0, desc: 'India\'s only riverine major port on the Hooghly.', stat: '46M tonnes', established: '1870' },
 
   // Shipyards
-  { id: 13, name: 'Cochin Shipyard Limited', type: 'shipyard', state: 'Kerala', city: 'Kochi', x: 41, y: 83, desc: 'India\'s premier shipbuilding facility. Built INS Vikrant.', stat: '110,000 DWT', established: '1972' },
-  { id: 14, name: 'Mazagon Dock Shipbuilders', type: 'shipyard', state: 'Maharashtra', city: 'Mumbai', x: 27, y: 60, desc: 'Leading defense shipyard — submarines, destroyers & frigates.', stat: '40,000 DWT', established: '1934' },
-  { id: 15, name: 'GRSE', type: 'shipyard', state: 'West Bengal', city: 'Kolkata', x: 72, y: 49, desc: 'Premier warship builder. 100+ warships delivered.', stat: '25,000 DWT', established: '1884' },
-  { id: 16, name: 'L&T Shipbuilding', type: 'shipyard', state: 'Tamil Nadu', city: 'Kattupalli', x: 52, y: 78, desc: 'State-of-the-art modular ship construction facility.', stat: '60,000 DWT', established: '2007' },
-  { id: 17, name: 'Hindustan Shipyard', type: 'shipyard', state: 'Andhra Pradesh', city: 'Visakhapatnam', x: 57, y: 64, desc: 'East coast shipbuilding & submarine retrofitting.', stat: '80,000 DWT', established: '1941' },
-  { id: 18, name: 'Goa Shipyard Limited', type: 'shipyard', state: 'Goa', city: 'Vasco da Gama', x: 32, y: 68, desc: 'Patrol craft, missile boats & training ships.', stat: '15,000 DWT', established: '1957' },
-  { id: 19, name: 'Reliance Naval', type: 'shipyard', state: 'Gujarat', city: 'Pipavav', x: 25, y: 50, desc: 'One of the world\'s largest dry docks (662m).', stat: '400,000 DWT', established: '1997' },
+  { id: 13, name: 'Cochin Shipyard Limited', type: 'shipyard', state: 'Kerala', city: 'Kochi', x: 31.5, y: 85.5, desc: 'India\'s premier shipbuilding facility. Built INS Vikrant.', stat: '110,000 DWT', established: '1972' },
+  { id: 14, name: 'Mazagon Dock Shipbuilders', type: 'shipyard', state: 'Maharashtra', city: 'Mumbai', x: 23.5, y: 56.2, desc: 'Leading defense shipyard — submarines, destroyers & frigates.', stat: '40,000 DWT', established: '1934' },
+  { id: 15, name: 'GRSE', type: 'shipyard', state: 'West Bengal', city: 'Kolkata', x: 69.0, y: 45.2, desc: 'Premier warship builder. 100+ warships delivered.', stat: '25,000 DWT', established: '1884' },
+  { id: 16, name: 'L&T Shipbuilding', type: 'shipyard', state: 'Tamil Nadu', city: 'Kattupalli', x: 44.8, y: 73.2, desc: 'State-of-the-art modular ship construction facility.', stat: '60,000 DWT', established: '2007' },
+  { id: 17, name: 'Hindustan Shipyard', type: 'shipyard', state: 'Andhra Pradesh', city: 'Visakhapatnam', x: 54.0, y: 62.2, desc: 'East coast shipbuilding & submarine retrofitting.', stat: '80,000 DWT', established: '1941' },
+  { id: 18, name: 'Goa Shipyard Limited', type: 'shipyard', state: 'Goa', city: 'Vasco da Gama', x: 25.8, y: 69.0, desc: 'Patrol craft, missile boats & training ships.', stat: '15,000 DWT', established: '1957' },
+  { id: 19, name: 'Reliance Naval', type: 'shipyard', state: 'Gujarat', city: 'Pipavav', x: 21.5, y: 48.8, desc: 'One of the world\'s largest dry docks (662m).', stat: '400,000 DWT', established: '1997' },
 
   // Ship Recycling
-  { id: 20, name: 'Alang Ship Recycling Yard', type: 'recycling', state: 'Gujarat', city: 'Alang', x: 27, y: 48, desc: 'World\'s largest ship breaking facility.', stat: '85,000 LDT/yr', established: '1983' },
-  { id: 21, name: 'Kandla Ship Recycling', type: 'recycling', state: 'Gujarat', city: 'Kandla', x: 23, y: 43, desc: 'HKC & ISO 14001 certified green recycling.', stat: '50,000 LDT/yr', established: '1982' },
-  { id: 22, name: 'Mumbai Ship Recycling', type: 'recycling', state: 'Maharashtra', city: 'Mumbai', x: 29, y: 59, desc: 'ISO 9001 certified standard recycling.', stat: '30,000 LDT/yr', established: '1979' },
+  { id: 20, name: 'Alang Ship Recycling Yard', type: 'recycling', state: 'Gujarat', city: 'Alang', x: 23.0, y: 47.5, desc: 'World\'s largest ship breaking facility.', stat: '85,000 LDT/yr', established: '1983' },
+  { id: 21, name: 'Kandla Ship Recycling', type: 'recycling', state: 'Gujarat', city: 'Kandla', x: 18.0, y: 39.2, desc: 'HKC & ISO 14001 certified green recycling.', stat: '50,000 LDT/yr', established: '1982' },
+  { id: 22, name: 'Mumbai Ship Recycling', type: 'recycling', state: 'Maharashtra', city: 'Mumbai', x: 22.8, y: 57.8, desc: 'ISO 9001 certified standard recycling.', stat: '30,000 LDT/yr', established: '1979' },
 
   // Training Institutes
-  { id: 23, name: 'IMU Chennai', type: 'institute', state: 'Tamil Nadu', city: 'Chennai', x: 51, y: 79, desc: 'Indian Maritime University — premier maritime education.', stat: '2,000+ students', established: '2008' },
-  { id: 24, name: 'MERI Mumbai', type: 'institute', state: 'Maharashtra', city: 'Mumbai', x: 26, y: 58, desc: 'Marine Engineering & Research Institute.', stat: '1,500+ students', established: '1949' },
-  { id: 25, name: 'IMU Visakhapatnam', type: 'institute', state: 'Andhra Pradesh', city: 'Visakhapatnam', x: 59, y: 62, desc: 'Eastern coast campus for maritime studies.', stat: '800+ students', established: '2008' },
-  { id: 26, name: 'IMU Kolkata', type: 'institute', state: 'West Bengal', city: 'Kolkata', x: 74, y: 50, desc: 'Inland waterways & maritime training campus.', stat: '1,000+ students', established: '2008' },
+  { id: 23, name: 'IMU Chennai', type: 'institute', state: 'Tamil Nadu', city: 'Chennai', x: 44.2, y: 76.0, desc: 'Indian Maritime University — premier maritime education.', stat: '2,000+ students', established: '2008' },
+  { id: 24, name: 'MERI Mumbai', type: 'institute', state: 'Maharashtra', city: 'Mumbai', x: 23.9, y: 55.5, desc: 'Marine Engineering & Research Institute.', stat: '1,500+ students', established: '1949' },
+  { id: 25, name: 'IMU Visakhapatnam', type: 'institute', state: 'Andhra Pradesh', city: 'Visakhapatnam', x: 53.0, y: 60.8, desc: 'Eastern coast campus for maritime studies.', stat: '800+ students', established: '2008' },
+  { id: 26, name: 'IMU Kolkata', type: 'institute', state: 'West Bengal', city: 'Kolkata', x: 68.0, y: 46.8, desc: 'Inland waterways & maritime training campus.', stat: '1,000+ students', established: '2008' },
 ];
 
 const categoryConfig = [
@@ -61,25 +61,25 @@ const coastlineStats = [
 
 /* ─── INDIA SVG MAP COMPONENT ─── */
 const IndiaSVG = () => (
-  <div className="relative w-full h-full flex items-center justify-center p-4">
+  <div className="relative w-full h-full">
     {/* Ocean Background & Nautical Grid */}
-    <div className="absolute inset-0 bg-[#0A1E38] rounded-xl overflow-hidden">
+    <div className="absolute inset-0 bg-[#0A1E38] overflow-hidden">
       {[...Array(11)].map((_, i) => (
         <div key={`h${i}`} className="absolute w-full border-b border-white/[0.04]" style={{ top: `${i * 10}%` }} />
       ))}
       {[...Array(11)].map((_, i) => (
         <div key={`v${i}`} className="absolute h-full border-r border-white/[0.04]" style={{ left: `${i * 10}%` }} />
       ))}
-      <span className="absolute left-[8%] top-[60%] -rotate-30 text-white/[0.08] text-sm font-serif italic pointer-events-none">Arabian Sea</span>
-      <span className="absolute right-[12%] top-[58%] rotate-20 text-white/[0.08] text-sm font-serif italic pointer-events-none">Bay of Bengal</span>
-      <span className="absolute left-[35%] bottom-[5%] text-white/[0.08] text-sm font-serif italic pointer-events-none">Indian Ocean</span>
+      <span className="absolute left-[5%] top-[62%] -rotate-30 text-white/[0.08] text-xs sm:text-sm font-serif italic pointer-events-none">Arabian Sea</span>
+      <span className="absolute right-[8%] top-[60%] rotate-20 text-white/[0.08] text-xs sm:text-sm font-serif italic pointer-events-none">Bay of Bengal</span>
+      <span className="absolute left-[30%] bottom-[3%] text-white/[0.08] text-xs sm:text-sm font-serif italic pointer-events-none">Indian Ocean</span>
     </div>
 
-    {/* SimpleMaps Official SVG Map */}
+    {/* SimpleMaps Official SVG Map (Exact 1:1 ratio filling relative container) */}
     <img
       src="/india-map.svg"
       alt="India SVG Map"
-      className="relative z-10 w-full h-full object-contain filter drop-shadow-[0_0_12px_rgba(214,175,54,0.3)] opacity-90 transition-all duration-300"
+      className="absolute inset-0 w-full h-full object-fill opacity-90 transition-all duration-300 pointer-events-none"
       style={{
         filter: 'brightness(0.9) contrast(1.2) drop-shadow(0 0 10px rgba(214, 175, 54, 0.25))'
       }}
@@ -199,70 +199,70 @@ const IndiaMap = () => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
             {/* Map Area */}
             <div className="lg:col-span-8 relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-[#0A1E38]" ref={mapRef}>
-              <div className="w-full aspect-[10/11] relative">
+              <div className="w-full aspect-square relative overflow-hidden">
                 <IndiaSVG />
-              </div>
 
-              {/* Markers */}
-              <div className="absolute inset-0">
-                {filtered.map(loc => {
-                  const color = typeColors[loc.type];
-                  const isActive = activeLocation?.id === loc.id;
-                  return (
-                    <button
-                      key={loc.id}
-                      className="absolute"
-                      style={{ left: `${loc.x}%`, top: `${loc.y}%`, transform: 'translate(-50%, -50%)', zIndex: isActive ? 30 : 10 }}
-                      onMouseEnter={() => setHoveredLocation(loc)}
-                      onMouseLeave={() => setHoveredLocation(null)}
-                      onClick={() => setSelectedLocation(selectedLocation?.id === loc.id ? null : loc)}
-                      aria-label={loc.name}
-                    >
-                      <span className="absolute rounded-full opacity-40" style={{
-                        backgroundColor: color, width: isActive ? '22px' : '14px', height: isActive ? '22px' : '14px',
-                        top: '50%', left: '50%', transform: 'translate(-50%, -50%)',
-                        animation: 'markerPing 2s cubic-bezier(0, 0, 0.2, 1) infinite',
-                      }} />
-                      <span className="relative block rounded-full border-2 border-white/80 shadow-lg transition-all duration-300 cursor-pointer" style={{
-                        backgroundColor: color, width: isActive ? '14px' : '9px', height: isActive ? '14px' : '9px',
-                        boxShadow: isActive ? `0 0 18px ${color}90` : `0 0 6px ${color}50`,
-                      }} />
-                      {isActive && (
-                        <span className="absolute left-1/2 -translate-x-1/2 -top-5 whitespace-nowrap text-[9px] font-semibold px-1.5 py-0.5 rounded bg-black/80 text-white pointer-events-none">
-                          {loc.name}
-                        </span>
-                      )}
-                    </button>
-                  );
-                })}
+                {/* Markers Overlay (Sharing exact 1:1 aspect-square bounds) */}
+                <div className="absolute inset-0">
+                  {filtered.map(loc => {
+                    const color = typeColors[loc.type];
+                    const isActive = activeLocation?.id === loc.id;
+                    return (
+                      <button
+                        key={loc.id}
+                        className="absolute transform -translate-x-1/2 -translate-y-1/2 focus:outline-none"
+                        style={{ left: `${loc.x}%`, top: `${loc.y}%`, zIndex: isActive ? 30 : 10 }}
+                        onMouseEnter={() => setHoveredLocation(loc)}
+                        onMouseLeave={() => setHoveredLocation(null)}
+                        onClick={() => setSelectedLocation(selectedLocation?.id === loc.id ? null : loc)}
+                        aria-label={loc.name}
+                      >
+                        <span className="absolute rounded-full opacity-40" style={{
+                          backgroundColor: color, width: isActive ? '22px' : '14px', height: isActive ? '22px' : '14px',
+                          top: '50%', left: '50%', transform: 'translate(-50%, -50%)',
+                          animation: 'markerPing 2s cubic-bezier(0, 0, 0.2, 1) infinite',
+                        }} />
+                        <span className="relative block rounded-full border-2 border-white/90 shadow-lg transition-all duration-300 cursor-pointer" style={{
+                          backgroundColor: color, width: isActive ? '14px' : '9px', height: isActive ? '14px' : '9px',
+                          boxShadow: isActive ? `0 0 18px ${color}90` : `0 0 6px ${color}50`,
+                        }} />
+                        {isActive && (
+                          <span className="absolute left-1/2 -translate-x-1/2 -top-5 whitespace-nowrap text-[9px] font-semibold px-1.5 py-0.5 rounded bg-black/80 text-white pointer-events-none">
+                            {loc.name}
+                          </span>
+                        )}
+                      </button>
+                    );
+                  })}
 
-                {/* Tooltip */}
-                {activeLocation && (
-                  <div className="absolute z-40 pointer-events-none" style={{
-                    left: tooltipPos.left, top: tooltipPos.top,
-                    transform: `translate(${tooltipPos.flipX ? 'calc(-100% - 14px)' : '14px'}, ${tooltipPos.flipY ? 'calc(-100% - 14px)' : '14px'})`,
-                  }}>
-                    <div className="bg-[#0D2E52]/95 backdrop-blur-md border border-white/15 rounded-xl px-4 py-3 shadow-2xl min-w-[220px] max-w-[280px]">
-                      <div className="flex items-center gap-2 mb-1.5">
-                        <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: typeColors[activeLocation.type] }} />
-                        <span className="text-[10px] font-bold uppercase tracking-wider" style={{ color: typeColors[activeLocation.type] }}>
-                          {typeLabels[activeLocation.type]}
-                        </span>
-                      </div>
-                      <h4 className="text-sm font-semibold text-white leading-snug">{activeLocation.name}</h4>
-                      <p className="text-[11px] text-gray-400 mt-0.5">{activeLocation.city}, {activeLocation.state}</p>
-                      <p className="text-[11px] text-gray-300 mt-2 leading-relaxed">{activeLocation.desc}</p>
-                      <div className="mt-2 pt-2 border-t border-white/10 flex items-center justify-between">
-                        <span className="text-[9px] text-gray-500 uppercase tracking-wider">Est. {activeLocation.established}</span>
-                        <span className="text-xs font-semibold text-[#D6AF36]">{activeLocation.stat}</span>
+                  {/* Tooltip */}
+                  {activeLocation && (
+                    <div className="absolute z-40 pointer-events-none" style={{
+                      left: tooltipPos.left, top: tooltipPos.top,
+                      transform: `translate(${tooltipPos.flipX ? 'calc(-100% - 14px)' : '14px'}, ${tooltipPos.flipY ? 'calc(-100% - 14px)' : '14px'})`,
+                    }}>
+                      <div className="bg-[#0D2E52]/95 backdrop-blur-md border border-white/15 rounded-xl px-4 py-3 shadow-2xl min-w-[220px] max-w-[280px]">
+                        <div className="flex items-center gap-2 mb-1.5">
+                          <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: typeColors[activeLocation.type] }} />
+                          <span className="text-[10px] font-bold uppercase tracking-wider" style={{ color: typeColors[activeLocation.type] }}>
+                            {typeLabels[activeLocation.type]}
+                          </span>
+                        </div>
+                        <h4 className="text-sm font-semibold text-white leading-snug">{activeLocation.name}</h4>
+                        <p className="text-[11px] text-gray-400 mt-0.5">{activeLocation.city}, {activeLocation.state}</p>
+                        <p className="text-[11px] text-gray-300 mt-2 leading-relaxed">{activeLocation.desc}</p>
+                        <div className="mt-2 pt-2 border-t border-white/10 flex items-center justify-between">
+                          <span className="text-[9px] text-gray-500 uppercase tracking-wider">Est. {activeLocation.established}</span>
+                          <span className="text-xs font-semibold text-[#D6AF36]">{activeLocation.stat}</span>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                )}
+                  )}
+                </div>
               </div>
 
               {/* Legend */}
-              <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 bg-[#0B2240]/90 backdrop-blur-sm border border-white/10 rounded-lg px-3 py-2">
+              <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 bg-[#0B2240]/90 backdrop-blur-sm border border-white/10 rounded-lg px-3 py-2 z-20">
                 <p className="text-[9px] uppercase tracking-wider text-gray-500 mb-1.5 font-semibold">Legend</p>
                 <div className="flex flex-col gap-1">
                   {categoryConfig.filter(c => c.key !== 'all').map(cat => (
@@ -275,7 +275,7 @@ const IndiaMap = () => {
               </div>
 
               {/* Count badge */}
-              <div className="absolute top-3 right-3 bg-[#D6AF36]/10 border border-[#D6AF36]/25 rounded-full px-3 py-1">
+              <div className="absolute top-3 right-3 bg-[#D6AF36]/10 border border-[#D6AF36]/25 rounded-full px-3 py-1 z-20">
                 <span className="text-xs font-bold text-[#D6AF36]">{filtered.length}</span>
                 <span className="text-[10px] text-gray-400 ml-1">shown</span>
               </div>
