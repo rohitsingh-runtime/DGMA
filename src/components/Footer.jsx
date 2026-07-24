@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 import Container from "../common/Container";
 import footerImg1 from "../assets/images/footer-img.png";
+import headerImg1 from "../assets/images/header-img1.png";
+import headerImg2 from "../assets/images/header-img2.png";
+import headerImg3 from "../assets/images/header-img3.png";
 
 const footerSections = [
   {
@@ -39,6 +42,25 @@ const Footer = () => {
           <div className="grid grid-cols-1 md:grid-cols-12 gap-y-10 md:gap-x-8 pb-10">
             {/* Left Branding Column */}
             <div className="md:col-span-5 space-y-4">
+              {/* Government Logos */}
+              <div className="flex items-center space-x-3 flex-wrap gap-y-2">
+                <img
+                  src={headerImg1}
+                  alt="Government of India"
+                  className="h-8 md:h-10 w-auto object-contain brightness-0 invert"
+                />
+                <img
+                  src={headerImg2}
+                  alt="DG Shipping"
+                  className="h-9 md:h-11 w-auto object-contain"
+                />
+                <img
+                  src={headerImg3}
+                  alt="Azadi Ka Amrit Mahotsav & Swachh Bharat"
+                  className="h-8 md:h-10 w-auto object-contain brightness-0 invert"
+                />
+              </div>
+
               {/* Logo & Title */}
               <div className="flex items-center space-x-3">
                 <img

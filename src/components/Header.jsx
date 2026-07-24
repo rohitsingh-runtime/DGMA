@@ -70,43 +70,45 @@ const Header = () => {
     <header className="sticky top-0 z-50 bg-[#0A284D] w-full text-white shadow-md font-sans">
       <Container>
         {/* Top Header Row */}
-        <div className="relative flex items-center justify-center gap-20 py-3">
-          {/* Left Logos */}
-          <div className="flex items-center space-x-3 mr-8 sm:mr-16 md:mr-18">
-            <img
-              src={headerImg1}
-              alt="Government of India"
-              className="h-10 md:h-12 w-auto object-contain brightness-0 invert"
-            />
-            <img
-              src={headerImg2}
-              alt="DG Shipping"
-              className="h-11 md:h-14 w-auto object-contain"
-            />
-          </div>
+        <Link to="/" className="block text-inherit no-underline">
+          <div className="relative flex items-center justify-center gap-20 py-3">
+            {/* Left Logos */}
+            <div className="flex items-center space-x-3 mr-8 sm:mr-16 md:mr-18">
+              <img
+                src={headerImg1}
+                alt="Government of India"
+                className="h-10 md:h-12 w-auto object-contain brightness-0 invert"
+              />
+              <img
+                src={headerImg2}
+                alt="DG Shipping"
+                className="h-11 md:h-14 w-auto object-contain"
+              />
+            </div>
 
-          {/* Center Titles */}
-          <div className="text-center hidden sm:block">
-            <h1 className="text-base md:text-xl font-normal tracking-wide text-white leading-tight">
-              Directorate General of Shipping
-            </h1>
-            <p className="text-xs md:text-sm text-gray-200 mt-0.5">
-              Ministry of Ports, Shipping and Waterways
-            </p>
-            <p className="text-xs md:text-sm text-gray-200">
-              Government of India
-            </p>
-          </div>
+            {/* Center Titles */}
+            <div className="text-center hidden sm:block">
+              <h1 className="text-base md:text-xl font-normal tracking-wide text-white leading-tight">
+                Directorate General of Shipping
+              </h1>
+              <p className="text-xs md:text-sm text-gray-200 mt-0.5">
+                Ministry of Ports, Shipping and Waterways
+              </p>
+              <p className="text-xs md:text-sm text-gray-200">
+                Government of India
+              </p>
+            </div>
 
-          {/* Right Logos */}
-          <div className="flex items-center space-x-3 ml-8 sm:ml-16 md:ml-30">
-            <img
-              src={headerImg3}
-              alt="Azadi Ka Amrit Mahotsav & Swachh Bharat"
-              className="h-10 md:h-14 w-auto object-contain brightness-0 invert"
-            />
+            {/* Right Logos */}
+            <div className="flex items-center space-x-3 ml-8 sm:ml-16 md:ml-30">
+              <img
+                src={headerImg3}
+                alt="Azadi Ka Amrit Mahotsav & Swachh Bharat"
+                className="h-10 md:h-14 w-auto object-contain brightness-0 invert"
+              />
+            </div>
           </div>
-        </div>
+        </Link>
 
         {/* Navigation Row */}
         <div className="flex items-center justify-center py-3 relative">
