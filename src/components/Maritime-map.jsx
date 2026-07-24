@@ -49,121 +49,28 @@ const stats = [
 
 /* ─── INDIA SVG OUTLINE ─── */
 const IndiaSVG = () => (
-  <svg
-    viewBox="0 0 500 550"
-    className="w-full h-full"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    {/* Water / ocean background */}
-    <rect width="500" height="550" fill="#0A1E38" rx="12" />
+  <div className="relative w-full h-full flex items-center justify-center p-4">
+    <div className="absolute inset-0 bg-[#0A1E38] rounded-xl overflow-hidden">
+      {[...Array(11)].map((_, i) => (
+        <div key={`h${i}`} className="absolute w-full border-b border-white/[0.04]" style={{ top: `${i * 10}%` }} />
+      ))}
+      {[...Array(11)].map((_, i) => (
+        <div key={`v${i}`} className="absolute h-full border-r border-white/[0.04]" style={{ left: `${i * 10}%` }} />
+      ))}
+      <span className="absolute left-[8%] top-[60%] -rotate-30 text-white/[0.08] text-sm font-serif italic pointer-events-none">Arabian Sea</span>
+      <span className="absolute right-[12%] top-[58%] rotate-20 text-white/[0.08] text-sm font-serif italic pointer-events-none">Bay of Bengal</span>
+      <span className="absolute left-[35%] bottom-[5%] text-white/[0.08] text-sm font-serif italic pointer-events-none">Indian Ocean</span>
+    </div>
 
-    {/* Grid lines for nautical feel */}
-    {[...Array(11)].map((_, i) => (
-      <line key={`h${i}`} x1="0" y1={i * 50} x2="500" y2={i * 50} stroke="#ffffff" strokeOpacity="0.04" strokeWidth="0.5" />
-    ))}
-    {[...Array(11)].map((_, i) => (
-      <line key={`v${i}`} x1={i * 50} y1="0" x2={i * 50} y2="550" stroke="#ffffff" strokeOpacity="0.04" strokeWidth="0.5" />
-    ))}
-
-    {/* India outline - simplified polygon */}
-    <path
-      d="M200,30 L215,28 L230,25 L240,30 L248,28 L260,32 L275,30 L290,28 
-         L310,32 L325,35 L340,30 L355,35 L365,38 L375,42 L385,48 
-         L390,55 L388,65 L392,72 L395,80 L390,88 L385,95 L380,102 
-         L375,108 L370,115 L365,120 L358,125 L352,130 L348,138 
-         L350,148 L355,155 L360,162 L362,170 L358,178 L352,185 
-         L345,190 L338,195 L332,200 L328,208 L325,215 L320,222 
-         L315,228 L310,235 L305,242 L298,248 L292,255 L285,260 
-         L280,268 L275,275 L270,282 L265,288 L262,295 L260,302 
-         L258,310 L256,318 L255,325 L252,332 L248,340 L245,348 
-         L240,355 L235,362 L230,368 L225,375 L220,382 L218,390 
-         L222,398 L228,405 L232,412 L238,418 L242,425 L248,430 
-         L252,435 L255,440 L258,448 L260,455 L258,462 L252,468 
-         L245,472 L238,478 L232,482 L225,488 L218,492 L210,495 
-         L202,498 L195,502 L188,505 L180,508 L172,505 L165,500 
-         L158,495 L152,488 L148,480 L145,472 L142,465 L140,458 
-         L138,450 L135,442 L132,435 L128,428 L125,420 L122,412 
-         L120,405 L118,398 L115,390 L112,382 L110,375 L108,368 
-         L105,360 L102,352 L100,345 L98,338 L96,330 L95,322 
-         L94,315 L92,308 L90,300 L88,292 L86,285 L84,278 
-         L82,270 L80,262 L78,255 L76,248 L75,240 L78,232 
-         L82,225 L88,218 L95,212 L100,205 L105,198 L108,190 
-         L110,182 L108,175 L105,168 L102,160 L100,152 L98,145 
-         L96,138 L95,130 L98,122 L102,115 L108,108 L115,102 
-         L122,96 L128,90 L132,82 L135,75 L138,68 L142,60 
-         L148,52 L155,45 L162,40 L170,36 L178,33 L185,30 
-         L192,28 L200,30Z"
-      fill="#0F2D4F"
-      stroke="#D6AF36"
-      strokeWidth="1.5"
-      strokeOpacity="0.6"
+    <img
+      src="/india-map.svg"
+      alt="India SVG Map"
+      className="relative z-10 w-full h-full object-contain filter drop-shadow-[0_0_12px_rgba(214,175,54,0.3)] opacity-90 transition-all duration-300"
+      style={{
+        filter: 'brightness(0.9) contrast(1.2) drop-shadow(0 0 10px rgba(214, 175, 54, 0.25))'
+      }}
     />
-
-    {/* Interior detail lines for states - subtle */}
-    <path d="M155,45 L200,80 L280,68 L340,80" stroke="#D6AF36" strokeOpacity="0.12" strokeWidth="0.5" />
-    <path d="M100,200 L180,190 L260,200 L330,205" stroke="#D6AF36" strokeOpacity="0.12" strokeWidth="0.5" />
-    <path d="M80,270 L160,260 L240,280 L300,260" stroke="#D6AF36" strokeOpacity="0.12" strokeWidth="0.5" />
-    <path d="M120,350 L200,340 L260,360" stroke="#D6AF36" strokeOpacity="0.12" strokeWidth="0.5" />
-
-    {/* Coastline glow effect */}
-    <path
-      d="M200,30 L215,28 L230,25 L240,30 L248,28 L260,32 L275,30 L290,28 
-         L310,32 L325,35 L340,30 L355,35 L365,38 L375,42 L385,48 
-         L390,55 L388,65 L392,72 L395,80 L390,88 L385,95 L380,102 
-         L375,108 L370,115 L365,120 L358,125 L352,130 L348,138 
-         L350,148 L355,155 L360,162 L362,170 L358,178 L352,185 
-         L345,190 L338,195 L332,200 L328,208 L325,215 L320,222 
-         L315,228 L310,235 L305,242 L298,248 L292,255 L285,260 
-         L280,268 L275,275 L270,282 L265,288 L262,295 L260,302 
-         L258,310 L256,318 L255,325 L252,332 L248,340 L245,348 
-         L240,355 L235,362 L230,368 L225,375 L220,382 L218,390 
-         L222,398 L228,405 L232,412 L238,418 L242,425 L248,430 
-         L252,435 L255,440 L258,448 L260,455 L258,462 L252,468 
-         L245,472 L238,478 L232,482 L225,488 L218,492 L210,495 
-         L202,498 L195,502 L188,505 L180,508 L172,505 L165,500 
-         L158,495 L152,488 L148,480 L145,472 L142,465 L140,458 
-         L138,450 L135,442 L132,435 L128,428 L125,420 L122,412 
-         L120,405 L118,398 L115,390 L112,382 L110,375 L108,368 
-         L105,360 L102,352 L100,345 L98,338 L96,330 L95,322 
-         L94,315 L92,308 L90,300 L88,292 L86,285 L84,278 
-         L82,270 L80,262 L78,255 L76,248 L75,240 L78,232 
-         L82,225 L88,218 L95,212 L100,205 L105,198 L108,190 
-         L110,182 L108,175 L105,168 L102,160 L100,152 L98,145 
-         L96,138 L95,130 L98,122 L102,115 L108,108 L115,102 
-         L122,96 L128,90 L132,82 L135,75 L138,68 L142,60 
-         L148,52 L155,45 L162,40 L170,36 L178,33 L185,30 
-         L192,28 L200,30Z"
-      fill="none"
-      stroke="#D6AF36"
-      strokeWidth="4"
-      strokeOpacity="0.08"
-      filter="url(#glow)"
-    />
-
-    {/* Sri Lanka */}
-    <ellipse cx="250" cy="502" rx="14" ry="18" fill="#0F2D4F" stroke="#D6AF36" strokeWidth="0.8" strokeOpacity="0.4" />
-
-    {/* Label: Arabian Sea */}
-    <text x="60" y="340" fill="#ffffff" fillOpacity="0.08" fontSize="14" fontFamily="serif" fontStyle="italic" transform="rotate(-30, 60, 340)">Arabian Sea</text>
-
-    {/* Label: Bay of Bengal */}
-    <text x="340" y="320" fill="#ffffff" fillOpacity="0.08" fontSize="14" fontFamily="serif" fontStyle="italic" transform="rotate(20, 340, 320)">Bay of Bengal</text>
-
-    {/* Label: Indian Ocean */}
-    <text x="150" y="530" fill="#ffffff" fillOpacity="0.08" fontSize="14" fontFamily="serif" fontStyle="italic">Indian Ocean</text>
-
-    {/* Glow filter */}
-    <defs>
-      <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-        <feGaussianBlur stdDeviation="3" result="blur" />
-        <feMerge>
-          <feMergeNode in="blur" />
-          <feMergeNode in="SourceGraphic" />
-        </feMerge>
-      </filter>
-    </defs>
-  </svg>
+  </div>
 );
 
 const MaritimeMapBanner = () => {
